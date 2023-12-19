@@ -4,12 +4,16 @@ import router from "./routes/routes.js";
 import session from "express-session";
 import mongoose from "mongoose";
 import MongoStore from "connect-mongo";
-import { uri } from "./models/userModel.js";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
+const port = process.env.PORT || 3000;
+const uri = process.env.URI;
 
-app.listen(3000, () => {
-  console.log(`Server is running on port 3000`);
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
 
 app.set("view engine", "ejs");
@@ -35,6 +39,5 @@ app.use(
     user_UserType: null,
   })
 );
-
 
 app.use("/", router);
