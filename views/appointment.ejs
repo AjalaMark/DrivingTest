@@ -1,0 +1,92 @@
+<%- include("partials/header") %>
+<%- include("partials/nav") %>
+
+<h2 class="appointment-header">Welcome to the Admin page</h2>
+
+<div class="appointment-container">
+
+  <form id="appointmentForm" action="/appointment" method="post">
+    <h2>Add an appointment</h2>
+    <label for="date">Select Date:</label>
+    <input type="date" id="date" name="date" required />
+    <% for (let i = 9; i < 14; i++) { %>
+      <% const timeSlot = `${i}:00`; %>
+      <% const appointment = typeof existingAppointments !== "undefined" ? existingAppointments.find(appt => appt.date === date && appt.time === timeSlot) : null; %>
+      <% const disabled = appointment ? appointment.isTimeSlotAvailable ? '' : 'disabled' : ''; %>
+      <button
+        type="submit" 
+        name="time"
+        value="<%= `${timeSlot}` %>"
+        <%= disabled %>
+      >
+        <%= timeSlot %>
+      </button>
+      <% const halfHourSlot = `${i}:30`; %>
+      <% const halfHourAppointment = typeof existingAppointments !== "undefined" ? existingAppointments.find(appt => appt.date === date && appt.time === halfHourSlot) : null; %>
+      <% const halfHourDisabled = halfHourAppointment ? halfHourAppointment.isTimeSlotAvailable ? '' : 'disabled' : ''; %>
+      <button
+        type="submit"
+        name="time"
+        value="<%= `${halfHourSlot}` %>"
+        <%= halfHourDisabled %>
+      >
+        <%= halfHourSlot %>
+      </button>
+    <% } %>
+  </form>
+  
+  <% if (typeof message !== "undefined") { %>
+    <p><%= message %></p>
+  <% } %>
+  
+  <button id="toggleAppointments" class="existingAppointments">Existing Appointments</button>
+  <% if (typeof existingAppointments !== "undefined" && existingAppointments.length > 0) { %>
+    <ul id="appointmentsList" style="display: none;">
+      <% existingAppointments.forEach(appointment => { %>
+        <% const appointmentDate = new Date(appointment.date);
+        const utcAppointmentDate = new Date(appointmentDate.getUTCFullYear(), appointmentDate.getUTCMonth(), appointmentDate.getUTCDate(), appointmentDate.getUTCHours(), appointmentDate.getUTCMinutes(), appointmentDate.getUTCSeconds());
+        const formattedDate = `${utcAppointmentDate.getFullYear()}-${(utcAppointmentDate.getMonth() + 1).toString().padStart(2, '0')}-${utcAppointmentDate.getDate().toString().padStart(2, '0')}`;
+         %>
+        <li><%= formattedDate %> at <%= appointment.time %></li>
+      <% }); %>
+    </ul>
+  <% } %>
+
+
+  <div class="user-container">
+    <h2>User Status</h2>
+    <% if (typeof userData !== "undefined" && userData.comment !== "") { %>
+      <ul>
+        <% userData.forEach(data => { %>
+          <li class="user-item">
+            <p class="user-name">Name: <%= data.firstName %> <%= data.lastName %></p>
+            <p class="<%= data.isTestPassed ? 'pass-fail pass' : 'pass-fail fail' %>">
+              Pass/Fail: <%= data.isTestPassed ? 'Passed' : 'Failed' %>
+            </p>
+            <p class="comment">Comment: <%= data.comment %></p>
+          </li>
+        <% }) %>
+      </ul>
+    <% } %>
+  </div>
+  
+
+</div>
+
+
+<script>
+  // Add this JavaScript code to your EJS file or include it from an external file
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const toggleButton = document.getElementById("toggleAppointments");
+    const appointmentsList = document.getElementById("appointmentsList");
+
+    toggleButton.addEventListener("click", function () {
+      if (appointmentsList.style.display === "none") {
+        appointmentsList.style.display = "block";
+      } else {
+        appointmentsList.style.display = "none";
+      }
+    });
+  });
+</script>

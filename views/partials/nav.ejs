@@ -1,0 +1,24 @@
+<nav>
+  <div class="logo">Logo</div>
+  <ul>
+    <li><a href="/dashboard">Dashboard</a></li>
+    <li><a href="/login">Login</a></li>
+    <% if(user_UserType === "Driver"){ %>
+    <li><a href="/g2page">G2 Page</a></li>
+    <li><a href="/gpage">G Page</a></li>
+    <form action="logout" method="post">
+      <button class="logout-btn">Logout</button>
+    </form>
+    <% } else if(user_UserType === "Admin") {%>
+    <li><a href="/appointment">Appointment</a></li>
+    <form action="logout" method="post">
+      <button class="logout-btn">Logout</button>
+    </form>
+    <% } else if (user_UserType === "Examiner") { %>
+      <li><a href="/examiner">Examiner</a></li>
+      <form action="logout" method="post">
+        <button class="logout-btn">Logout</button>
+      </form>
+    <% } %>
+  </ul>
+</nav>

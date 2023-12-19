@@ -1,0 +1,287 @@
+*::before,
+*::after,
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body{
+  background-color: #333;
+  color: white;
+}
+
+.container{
+  margin-top: 40px;
+}
+
+dl,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(102, 102, 102);
+  padding: 20px 30px;
+  align-items: center;
+  color: white;
+}
+
+nav ul {
+  display: flex;
+}
+
+nav ul li {
+  list-style: none;
+  margin-right: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: white;
+}
+
+.logo {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.dashboard-hero {
+  width: 100%;
+  height: 60vh;
+  background-color: rgb(102, 102, 102);
+  text-align: center;
+  position: relative;
+  color: white;
+}
+
+.dashboard-hero h1 {
+  padding-top: 100px;
+  font-size: 80px;
+  font-weight: bold;
+}
+
+.dashboard-hero p {
+  font-weight: 100;
+}
+
+.logout-btn {
+  border: none;
+  padding: 4px;
+}
+.login-header {
+  margin-top: 50px;
+}
+
+
+
+.signup-container h1 {
+  text-align: center;
+}
+
+.signup-header {
+  margin-top: 50px;
+}
+
+.personal-info {
+  margin-bottom: 100px;
+  margin-top: 30px;
+}
+
+
+.appointment-header {
+  text-align: center;
+  color: #333;
+}
+
+.appointment-container {
+  max-width: 800px;
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.appointment-container h2 {
+  color: #333;
+}
+
+.appointment-container ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.appointment-container li {
+  margin-bottom: 10px;
+  color: black;
+}
+
+.appointment-container label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.appointment-container .existingAppointments{
+  width: 100%;
+  margin: 40px 0;
+}
+
+.appointment-container input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+.appointment-container button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.appointment-container button[disabled] {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.appointment-container button:hover {
+  background-color: #45a049;
+}
+
+.appointment-container h2,
+h3,
+p {
+  color: #333;
+}
+
+.appointment-container ul {
+  padding: 0;
+}
+
+.appointment-container li {
+  margin-bottom: 10px;
+}
+
+#dateForm{
+  margin-top: 40px;
+}
+
+/* Add some styling to the user container */
+.user-container {
+  margin-top: 20px;
+}
+
+/* Style each user item in the list */
+.user-item {
+  background-color: #f9f9f9; /* Light gray background color */
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+}
+
+/* Style the user name */
+.user-name {
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-bottom: 5px;
+}
+
+/* Style the pass/fail status */
+.pass-fail {
+  color: #4CAF50; /* Green color for passed */
+}
+
+.fail {
+  color: #FF5722; /* Orange color for failed */
+}
+
+/* Style the comment */
+.comment {
+  font-style: italic;
+  color: #666; /* Gray color for comments */
+}
+
+
+
+/* Add this CSS to your stylesheets */
+
+/* Add this CSS to your stylesheets */
+
+.examiner-container {
+  max-width: 800px;
+  margin: 50px auto;
+}
+
+.examiner-container form {
+  margin-bottom: 20px;
+}
+
+.examiner-container label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.examiner-container select, button {
+  padding: 8px;
+}
+
+.examiner-container ul {
+  list-style: none;
+  padding: 0;
+}
+
+.examiner-container ul li {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 50px;
+}
+
+.examiner-container strong {
+  color: #007bff;
+}
+
+.examiner-container p {
+  margin: 5px 0;
+}
+
+.examiner-container form {
+  border: 1px solid #ddd;
+  padding: 20px;
+}
+
+.examiner-container form input,
+form select,
+form button {
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.examiner-container button {
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.examiner-container button:hover {
+  background-color: #0056b3;
+}
+
+.examiner-container #toggleAppointments{
+  margin-bottom: 40px
+}
+
+
+.examiner-users{
+  margin-top: 20px;
+}

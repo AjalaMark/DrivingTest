@@ -1,0 +1,87 @@
+<%- include("partials/header") %>
+<%- include("partials/nav") %>
+
+<div class="examiner-container">
+  <h1>Welcome, Examiner!</h1>
+
+  <form action="/examiner" method="get">
+    <% if (typeof users !== "undefined") { %>
+      <label for="testType">Filter by Test Type:</label>
+      <select id="testType" name="testType">
+        <option value="all" <%= testType === 'all' ? 'selected' : '' %>>All</option>
+        <option value="G2" <%= testType === 'G2' ? 'selected' : '' %>>G2</option>
+        <option value="G" <%= testType === 'G' ? 'selected' : '' %>>G</option>
+      </select>
+      <button type="submit">Filter</button>
+    <% } %>
+  </form>
+
+  <!-- List of Appointments -->
+  <h2>Appointments</h2>
+  <button id="toggleAppointments">Toggle Appointments</button>
+
+    <ul id="appointmentsList" style="display: none;">
+    <% if (typeof appointments !== "undefined") { %>
+        <% appointments.forEach(appointment => { %>
+        <li>
+            Date: <%= appointment.date %>, Time: <%= appointment.time %>
+        </li>
+        <% }); %>
+    <% } %>
+    </ul>
+
+
+  <!-- List of Users -->
+  <h2 class="examiner-users">Users</h2>
+  <ul>
+    <% if (typeof users !== "undefined" && typeof usersWithAppointments !== "undefined") { %>
+      <% users.forEach(user => { %>
+        <li>
+          <strong>Driver Name: <%= user.firstName %> <%= user.lastName %></strong><br>
+          <strong>Car Make: <%= user.carDetails.carMake %> </strong><br>
+          <strong>Platenumber: <%= user.carDetails.plateNumber %></strong><br>
+
+          <p style="color: white">Test Type: <%= user.testType %></p>
+          <% if (user.comment) { %>
+            <p style="color:white">Comment: <%= user.comment %></p>
+          <% } %>
+          <% if (user.passFail !== null) { %>
+            <p style="color:white">Pass/Fail: <%= user.isTestPassed ? "Pass" : "Fail" %></p>
+          <% } %>
+
+          <% if (user.passFail !== null) { %>
+            <form action="/examiner/update-user/<%= user._id %>"" method="post">
+              <label for="comment">Add Comment:</label>
+              <input type="text" id="comment" name="comment">
+              <input type="hidden" id="userId" name="userId" value="<%= user._id %>">
+              <label for="passFail">Pass/Fail:</label>
+              <select id="passFail" name="passFail">
+                <option value="true">Pass</option>
+                <option value="false">Fail</option>
+              </select>
+              <button type="submit">Submit</button>
+            </form>
+          <% } %>
+        </li>
+      <% }); %>
+    <% } %>
+  </ul>
+</div>
+
+
+<script>
+    // Add this JavaScript code to your EJS file or include it from an external file
+  
+    document.addEventListener("DOMContentLoaded", function () {
+      const toggleButton = document.getElementById("toggleAppointments");
+      const appointmentsList = document.getElementById("appointmentsList");
+  
+      toggleButton.addEventListener("click", function () {
+        if (appointmentsList.style.display === "none") {
+          appointmentsList.style.display = "block";
+        } else {
+          appointmentsList.style.display = "none";
+        }
+      });
+    });
+  </script>
